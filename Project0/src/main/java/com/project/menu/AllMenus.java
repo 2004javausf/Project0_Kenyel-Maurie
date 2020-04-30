@@ -12,6 +12,28 @@ public class AllMenus {
 
 	static Scanner scan = new Scanner(System.in);
 
+	public static void mainStartMenu() {
+		System.out.println("**Welcome To Bank Project Zero**");
+		System.out.println("Are you a Customer or Employee \n" +
+		"[C]ustomer \n"
+		+"[E]mployee");
+		
+		String mainSelect = scan.nextLine();
+		
+		switch (mainSelect.toLowerCase()) {
+		case "c":
+			startMenu();
+			
+			break;
+
+		case "e":
+			employeeLogin();
+			
+			break;
+		default:
+			break;
+		}
+	}
 	public static void startMenu() {
 		System.out.println("**Welcome To Bank Project Zero**");
 		System.out.println("Please Select One Of The Below Options: \n" + "1. Current Customer - Login \n"
@@ -20,7 +42,7 @@ public class AllMenus {
 
 		switch(selection) {
 		case 1:
-//			signInToAccount();
+//			signInToAccount()
 			break;
 		case 2:
 			signUp();
@@ -37,6 +59,35 @@ public class AllMenus {
 	}
 
 	// code for customer login
+	
+	public static void signIntoAccount(){
+		System.out.println("Please Login");	
+		System.out.println("Username:");
+		String username= scan.nextLine();
+		Object user= AccountList.login(username);
+	}
+	
+//	public static void signIntoAccount{
+//		System.out.println("Please Login");
+//		System.out.println("Username:");
+//		String username= scan.nextLine();
+//		Object user= AccountList.login(user);
+//	}
+	
+//	public static void signInToAccount() {
+//		System.out.println("Please Login");
+//		System.out.println("Username:");
+//		String username= scan.nextLine();
+//		Customer user= AccountList.login(username);
+//		System.out.println("Password:");
+//		String password= scan.nextLine();
+//		Customer pass = AccountList.login(password); 
+//		if (username.equals(user) && password.equals(pass)) {
+//	    	System.out.println("Welcome " + user.getFname());
+//	    	
+//	    }
+//		
+//	}
 //	public static void signInToAccount() {
 //		System.out.println("Please Login");
 //		System.out.println("Username:");
@@ -104,7 +155,7 @@ public class AllMenus {
 		System.out.println("FIRST NAME:");
 		String customerFname= scan.nextLine();
 //		scan.nextLine();
-		System.out.println(customerFname);
+//		System.out.println(customerFname);
 		System.out.println("LAST NAME:");
 		String customerLname=scan.nextLine();
 		System.out.println("USERNAME:");
@@ -113,9 +164,9 @@ public class AllMenus {
 		System.out.println("PASSWORD:");
 		String customerPassword=scan.nextLine();
 		new Customer(customerFname, customerLname, customerUsername, customerPassword);
-		System.out.println(AccountList.customerList.toString());
-		System.out.println("Would you like to to make this a joint account? (y/n)");
-		String jointAccount= scan.nextLine();
+		System.out.println(AccountList.newcustomer.toString());
+//		System.out.println("Would you like to to make this a joint account? (y/n)");
+//		String jointAccount= scan.nextLine();
 		System.out.println("Thanks For Applying! Application Has Been Sent For Approval");
 		
 		startMenu();
@@ -135,7 +186,10 @@ public class AllMenus {
 	    String employPassword = scan.nextLine();
 	    if (userEmploy.equals(employUsername) && passEmploy.equals(employPassword)) {
 	    	System.out.println("Welcome " + userEmploy);
-	    	
+	    	employeeOptions();
+	    }else {
+	    	System.out.println("Wrong Username/Password, Please try again");
+	    	employeeLogin();
 	    }
 	}
 	
@@ -152,34 +206,105 @@ public class AllMenus {
 	    String adminPassword = scan.nextLine();
 	    if (userAdmin.equals(adminUsername) && passAdmin.equals(adminPassword)) {
 	    	System.out.println("Welcome " + userAdmin);	
+	    	  	
 	    	employeeOptions();
+	    }else {
+	    	System.out.println("Wrong Username/Password, Please try again");
+	    	adminLogin();
 	    }
 	}
+	
+	//code for employee to pull customer data
+	
+	public static void reviewCustomerInfo() {
+		System.out.println("Review Customer Information");
+		System.out.println("Input Customer Username");
+		String checkUser= scan.nextLine();
+		Customer check=AccountList.employeeCheck(checkUser);
+		System.out.println(check);
+		System.out.println("Customer First Name:" + check.getFname() + " \n" + "Customer Last Name: " + check.getLname() +"\n"
+				+ "Username: " + check.getUsername());
+		
+		}
 	// employee options
+	
 	public static void employeeOptions() {
 		System.out.println("1. Approve or Deny Account \n" 
-	+ "2. Review Customer info \n"
-				+ "3. Quit");
-		
+				+ "2. Review Customer info \n"
+							+ "3. Quit");
 		int selection = Integer.parseInt(scan.nextLine());
-		switch(selection) {
+		switch (selection) {
 		case 1:
-//			approveDenyAccount();
+			approveDenyAccount();
 			break;
 		case 2:
-			signUp();
+			reviewCustomerInfo();
+			System.out.println("Would You Like To Lookup Another Customer? y/n \n"
+					+ "No Will send you to the main employee menu. ");
 			break;
 		case 3:
 			System.out.println("Logged Out");
 			break;
-			default:
-				System.out.println("Please Choose From Selection");
-				startMenu();
-				break;
+		default:
+			System.out.println("Please Choose From Selection");
+		startMenu();
+			break;
+		
 		}
-		
-		
 	}
+//	public static void employeeOptions() {
+//		System.out.println("1. Approve or Deny Account \n" 
+//	+ "2. Review Customer info \n"
+//				+ "3. Quit");
+//		
+//		int selection = Integer.parseInt(scan.nextLine());
+//		String select = scan.nextLine();
+//		switch(selection) {
+//		case 1:
+//			approveDenyAccount();
+//			break;
+//		case 2:
+//			reviewCustomerInfo();
+////			System.out.println("Review Customer Information");
+////			System.out.println("Input Customer Username");
+////			String checkUser= scan.nextLine();
+////			Customer check=AccountList.employeeCheck(checkUser);
+////			System.out.println(check);
+////			System.out.println("Customer First Name:" + check.getFname() + " \n" + "Customer Last Name: " + check.getLname() +"\n"
+////					+ "Username: " + check.getUsername());
+//			System.out.println("Would You Like To Lookup Another Customer? y/n \n +"
+//					+ "No Will send you to the main employee menu. ");
+////			switch (select) {
+////			case "y":
+////				reviewCustomerInfo();
+////				break;
+////				
+////			case "n":
+////				employeeOptions();
+////				break;
+////
+////			default:
+////				employeeOptions();
+////				break;
+////			}
+////			break;
+//		case 3:
+//			System.out.println("Logged Out");
+//			break;
+//			default:
+//				System.out.println("Please Choose From Selection");
+//				startMenu();
+//				break;
+//		}
+//		
+//		
+//	}
+	
+
+	
+public static void approveDenyAccount() {
+	AccountList.approvalOrDeny();
+}
 }
 
 

@@ -16,13 +16,15 @@ public class Customer implements Serializable  {
 	private String lname ;
 	private String username;
 	private String password;
-	private Double balance;
+	private double initialBalance;
 
 	
 	public Customer() {
 		super();
-		AccountList.customerList.add(this);
-		Files.writeCustomerFile(AccountList.customerList);
+		AccountList.newcustomer.add(this);
+		Files.writeCustomerFile(AccountList.newcustomer);
+//		AccountList.customerList.add(this);
+//		Files.writeCustomerFile(AccountList.customerList);
 		
 		
 	}
@@ -33,7 +35,7 @@ public class Customer implements Serializable  {
 		this.lname = lname;
 		this.username = username;
 		this.password = password;
-		this.setbalance(0.0);
+		this.setInitialBalance(0.0);
 		AccountList.customerList.add(this);
 		Files.writeCustomerFile(AccountList.customerList);
 	}
@@ -75,18 +77,20 @@ public class Customer implements Serializable  {
 		this.password = password;
 	}
 
-	public Double getBalance() {
-		return balance;
+	public double getInitialBalance() {
+		return initialBalance;
 	}
 
-	public void setBalance(Double balance) {
-		this.balance = balance;
+	public void setInitialBalance(double initialBalance) {
+		this.initialBalance = initialBalance;
 	}
 	
 	@Override
 	public String toString() {
 		return "Customer [fname=" + fname + ", lname=" + lname + ", username=" + username + ", password=" + password + "]";
 	}
+
+
 
 
 	

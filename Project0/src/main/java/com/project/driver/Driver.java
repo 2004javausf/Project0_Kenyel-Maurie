@@ -11,7 +11,7 @@ public class Driver {
 Files.readCustomerFile();
 System.out.println(AccountList.customerList.toString());
 System.out.println("-------------------------");
-AllMenus.startMenu();
+AllMenus.mainStartMenu();
 
 	}
 
