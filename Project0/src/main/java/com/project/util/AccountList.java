@@ -124,6 +124,7 @@ public class AccountList {
 				customerList.remove(c);
 				System.out.println("Client Removed");
 				Files.writeCustomerFile(customerList);
+				AllMenus.adminOptions();
 			} else {
 				System.out.println();
 				System.out.println("Client Account does not exist.");

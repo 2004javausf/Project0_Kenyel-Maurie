@@ -10,8 +10,8 @@ public class Driver {
 
 Files.readCustomerFile();
 Files.readNewCustomerFile();
-System.out.println(AccountList.customerList.toString());
-System.out.println("-------------------------");
+//System.out.println(AccountList.customerList.toString());
+//System.out.println("-------------------------");
 AllMenus.mainStartMenu();
 
 	}

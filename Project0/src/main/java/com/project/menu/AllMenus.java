@@ -191,7 +191,7 @@ public class AllMenus {
 		System.out.println("Please Enter Username and Password");
 		System.out.println("Username:");
 		String adminUser = scan.nextLine();
-		System.out.println("Passoword:");
+		System.out.println("Password:");
 		String adminPass= scan.nextLine();
 		if(userAdmin.equals(adminUser) && passAdmin.equals(adminPass)) {
 			System.out.println("Welcome " + userAdmin);
