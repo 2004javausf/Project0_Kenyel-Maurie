@@ -117,8 +117,6 @@ public class AllMenus {
 		}
 	}
 
-
-
 //-------------------
 
 //CODE FOR EMPLOYEE TO GRAB CLIENT INFO
@@ -220,7 +218,7 @@ public class AllMenus {
 				AdminOptions.AdOptions();
 				break;
 			case "c":
-				AdminOptions.cancelAccount();
+				AccountList.cancelAccount();
 				break;
 				
 			case "q":
@@ -234,30 +232,5 @@ public class AllMenus {
 			}
 		}
 		
-//	public static void cancelAccount() {
-//			
-//			System.out.println("CANCEL ACCOUNT");
-//			System.out.println("Input Customer Username");
-//			String checkUser = scan.nextLine();
-//			Customer check = AccountList.employeeCheck(checkUser);
-//			System.out.println("Customer First Name:" + check.getFname() + " \n" + "Customer Last Name: " + check.getLname()
-//					+ "\n" + "Username: " + check.getUsername() +"\n" + "Account Number(s): " + check.getAccountNumber() + "\n" + "Account Balance: $" + check.getInitialBalance());
-//			boolean 
-//			scan.nextLine();
-//			System.out.println("Would You Like To Lookup Another Customer? y/n \n"
-//					+ "No Will send you to the main employee menu. ");
-//			String select1 = scan.nextLine();
-//			switch (select1.toLowerCase()) {
-//			case "y":
-//				AllMenus.reviewCustomerInfo();
-//				scan.nextLine();
-//				break;
-//			case "n":
-//				AllMenus.employeeOptions();
-//				break;
-//			default:
-////				System.out.println("Please try again");
-//				break;
-//			}
-//		}
+
 }

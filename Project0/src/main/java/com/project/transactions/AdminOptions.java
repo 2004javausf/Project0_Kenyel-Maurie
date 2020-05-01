@@ -6,7 +6,9 @@ import java.util.List;
 import java.util.Scanner;
 
 import com.project.bean.Customer;
+import com.project.menu.AllMenus;
 import com.project.util.AccountList;
+import com.project.util.Files;
 
 public class AdminOptions {
 	public static List<Customer> customerList = new ArrayList<Customer>();
@@ -18,8 +20,7 @@ public class AdminOptions {
 				+ "2.Withdraw funds \n"
 				+ "3.Deposit funds \n"
 				+ "4.Transfer funds \n"
-				+ "5.Cancel Account \n"
-				+ "7.Quit \n"	
+				+ "5.Quit \n"	
 				);
 		return 0;
 	}
@@ -64,28 +65,40 @@ public class AdminOptions {
    			break;
    			
    		case 5: 
-   			cancelAccount();
-   			System.out.println("*********************************");
-   			adminMainOptions();
-   	   		break;	
-   		case 6: 
-
+          AllMenus.adminOptions();
    			break;
    					
    	}	 
    	 
-   } while(selection1!=6);;
+   } while(selection1!=5);;
    	}
 	
-public static void cancelAccount() {
-	for (Customer cancel: customerList) {
-		System.out.println("Enter Username");
-		String user = scan.nextLine();
-//		if(user.equals(cancel)) {
-//			System.out.println(user);
-			
-		}
-	}
+
+	
+	//Why did this not work here
+	
+//	public static void cancelAccount() {
+//
+//for(Customer cus: customerList) {
+//	System.out.println("Enter username of Client you will like to remove");
+//	String username = scan.nextLine();
+//	if (c.getUsername().equals(username)) {
+//	System.out.println(c.getFname());
+//	break;
+////	customerList.remove(c);
+////	System.out.println("Client Removed");
+////	Files.writeCustomerFile(customerList);
+//	}else {
+//		System.out.println();
+//		System.out.println("DONE");
+//		break;
+//	}
+//}
+//
+//	}
+
+
+
 }
 
    

@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 import com.project.bean.Customer;
+import com.project.menu.AllMenus;
 import com.project.util.AccountList;
 
 public class Options {
@@ -57,11 +58,11 @@ do{
 		//Apply For New Account
 		case 5:
 			System.out.println("Please complete the below for new account.");
-//			BankTransactions.newAccountSignUp();
+			BankTransactions.newAccountSignUp();
 			break;
 			//6.Quit	
 		case 6: 
-//			quit=true;
+			AllMenus.mainStartMenu();
 			break;
 					
 	}	 

@@ -29,7 +29,10 @@ public class BankTransactions {
 		double bal = check.getInitialBalance();
 		System.out.println("Your balance is: " + bal);
 		System.out.println("*********************************");
-//		BankTransactions.mainMenu();
+if(bal<0) {
+	System.out.println("Your account is negative. Please deposit funds soon");
+}
+		//		BankTransactions.mainMenu();
 //		scan.nextLine();
 	}
 
@@ -39,6 +42,9 @@ public class BankTransactions {
 		double withdraw = check.getInitialBalance();
 		System.out.println("Enter an amount to withdraw");
 		double c = scan.nextDouble();
+		if (c>withdraw) {
+			System.out.println("Sorry Withdraw Amount Exceeds Current Account Balance");
+			}
 		System.out.println("After withdrawing $" + c + "your new balance is $" + (withdraw - c));
 		check.setInitialBalance(check.getInitialBalance() - c);
 		Files.writeCustomerFile(AccountList.customerList);
@@ -49,18 +55,16 @@ public class BankTransactions {
 	public static double deposit (Customer check)  {
 		System.out.println("Enter an amount to deposit");
 		double b = scan.nextDouble();
-		System.out.println("After depositing $" + b + " your new balance is $" + (check.getInitialBalance() + b));
-		check.setInitialBalance(check.getInitialBalance() + b);
-		Files.writeCustomerFile(AccountList.customerList);
-		// System.out.println("The new balance of your account is $" +
-		// a.getInitialBalance());
-		return (check.getInitialBalance() + b);
+		if(b<1) {
+			System.out.println("Deposit must be greater than $1.00");
+		}else {
+			System.out.println("After depositing $" + b + " your new balance is $" + (check.getInitialBalance() + b));
+			check.setInitialBalance(check.getInitialBalance() + b);
+			Files.writeCustomerFile(AccountList.customerList);			
+		}
+			return (check.getInitialBalance() + b);
 	}
 	
-	//select account
-//	public static void selectAcctType(Customer check)
-
-	// apply for new account 
 	
 	public static void newAccountSignUp() {
 		System.out.println("Please Complete The Following:");
@@ -70,9 +74,16 @@ public class BankTransactions {
 		String customerLname = scan.nextLine();
 		System.out.println("USERNAME:");
 		String customerUsername = scan.nextLine();
+		System.out.println("PASSWORD:");
+		String customerPassword = scan.nextLine();
 		int acctNum = ThreadLocalRandom.current().nextInt();
-		new Customer(customerFname, customerLname, customerUsername, acctNum);
 		System.out.println();
+		new Customer(customerFname, customerLname, customerUsername, customerPassword, acctNum);
+		System.out.println(AccountList.newcustomer.toString());
+		System.out.println();
+		System.out.println("Thanks For Applying! Application Has Been Sent For Approval");
+
+		mainMenu();
 	}
 	
 	
@@ -86,10 +97,17 @@ public class BankTransactions {
 		Customer b = AccountList.employeeCheck(receiver);
 		System.out.println("How Much would you like to send");
 		double amount = scan.nextDouble();
-		b.setInitialBalance(b.getInitialBalance()+ amount);
-		a.setInitialBalance(a.getInitialBalance() - amount);
-		Files.writeCustomerFile(AccountList.customerList);
-		System.out.println("You new balance is: $" + a.getInitialBalance());
+		if(amount>a.getInitialBalance()) {
+			System.out.println("Sorry you have insufficient funds!");
+			System.out.println("Please deposit funds and try again");
+		}else {
+			
+			b.setInitialBalance(b.getInitialBalance()+ amount);
+			a.setInitialBalance(a.getInitialBalance() - amount);
+			Files.writeCustomerFile(AccountList.customerList);
+			System.out.println("You new balance is: $" + a.getInitialBalance());
+		}
+		
 	}
 	
 	public static void adminTransfer() {
