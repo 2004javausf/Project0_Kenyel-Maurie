@@ -9,6 +9,7 @@ public class Driver {
 	public static void main(String[] args) {
 
 Files.readCustomerFile();
+Files.readNewCustomerFile();
 System.out.println(AccountList.customerList.toString());
 System.out.println("-------------------------");
 AllMenus.mainStartMenu();

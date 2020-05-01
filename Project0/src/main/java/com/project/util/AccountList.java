@@ -3,24 +3,18 @@ package com.project.util;
 import java.io.ObjectInputStream.GetField;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 import com.project.bean.Customer;
 import com.project.menu.AllMenus;
+import com.project.transactions.BankTransactions;
 
 public class AccountList {
 
+	static Scanner scan = new Scanner(System.in);
 	public static List<Customer> customerList = new ArrayList<Customer>();
 	public static List<Customer> newcustomer = new ArrayList<Customer>();
 
-	// places new accounts in holding for employee review
-	public Customer newCustomer(String firstname, String lastname, String username, String password) {
-
-		Customer newCus = new Customer(firstname, lastname, username, password);
-
-		newcustomer.add(newCus);
-		return newCus;
-	}
-	
 	  			//*******CUSTOMER CODES*******
 	
 	// code will check for username duplicates
@@ -32,38 +26,86 @@ public class AccountList {
 				System.out.println("Sorry Username Already Exist. Please try again. ");
 				AllMenus.signUp();
 			}
+		}
+		return null;
+	}
+	
+	
+	//CODE WILL CHECK CUSTOMER LOGIN
+	
+	public static Customer login(String user, String pass) {
+		
+		
+		for (int i = 0; i < customerList.size(); i++) {
+			String customer = customerList.get(i).getUsername();
+			String password = customerList.get(i).getPassword();
+			if (user.equals(customer) && pass.equals(password) ) {
+				return customerList.get(i);
+			}
 
 		}
 		return null;
 	}
 	
-	//CODE WILL CHECK CUSTOMER LOGIN
-	public static Object login(String username) {
-		for (Customer log: customerList) {
-			String user= log.getUsername();
-			String pass = log.getPassword();
-			if (username.equals(user) && password.equals(pass))
-				System.out.println("Welcome Back"+ log.getFname() + " " + log.getLname());
+	
+	public static Customer adminCustlogin(String user) {
+		
+		
+		for (int i = 0; i < customerList.size(); i++) {
+			String customer = customerList.get(i).getUsername();
+				if (user.equals(customer)) {
+				return customerList.get(i);
+			}
+
 		}
 		return null;
-		}
+	}
 	
-	public  static 
+
 	
 				//********EMPLOYEE CODES************
 	
 	// code will allow employee to approve or deny accounts
 
-	public static Customer approvalOrDeny() {
-
+	
+	public static void appDeny() {
 		for (Customer nC : newcustomer) {
-			System.out.println("NEW ACCOUNTS FOR APPROVALN/" + "ACCOUNT HOLDER FULLNAME: " + nC.getFname() + " "
+
+			System.out.println("NEW ACCOUNTS FOR APPROVAL \n" + "ACCOUNT HOLDER FULLNAME: " + nC.getFname() + " "
 					+ nC.getLname() + "\n" + "USERNAME: " + nC.getUsername());
+			
+			System.out.println("[A]pproved \n" + "[D]eny" );
+			String select = scan.nextLine();
+			switch (select.toLowerCase()) {
+			case "a":
+				customerList.add(nC);
+				System.out.println("APPROVED!");
+				
+				break;
+			case "D":
+			System.out.println("Denied!");
+			scan.nextLine();
+				
+				break;
+
+			default:
+				System.out.println("Please make another selection");
+				break;
+			}
+			
 		}
-		return null;
-		
+		newcustomer.removeAll(newcustomer);
+		System.out.println("Empty");
+		Files.writeNewCustomerFile(newcustomer);
+		AllMenus.employeeOptions();
+		return;
+	
 	}
 	
+	
+	
+
+
 	//CODE WILL ALLOW EMPLOYEE TO SEE CUSTOMER INFO
 	
 		public static Customer employeeCheck(String userInfo) {
@@ -73,8 +115,8 @@ public class AccountList {
 				if (userInfo.equals(customer)) {
 					return customerList.get(i);
 				}
-
 			}
+			
 			return null;
 		}
 		
@@ -82,29 +124,7 @@ public class AccountList {
 		
 	
 			//*************ADMIN CODE*******************
-	
-	
-	
-	
-	
 
-
-
-
-
-
-//CODE WILL ALLOW ADMIN TO MAKE CHANGES
-	
-
-
-	
-
-	
-
-
-	
-
-//CODE WILL GIVE EMPLOYEE ACCESS TO CUSTOMER ACCOUNT
 
 }
 
