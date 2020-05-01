@@ -81,14 +81,14 @@ public static void cancelAccount() {
 	for (Customer cancel: customerList) {
 		System.out.println("Enter Username");
 		String user = scan.nextLine();
-		if(user.equals(cancel)) {
-			System.out.println(user);
+//		if(user.equals(cancel)) {
+//			System.out.println(user);
 			
 		}
 	}
 }
 
-   }
+   
 
 
 

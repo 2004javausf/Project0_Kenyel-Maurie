@@ -33,7 +33,7 @@ public class AllMenus {
 
 			break;
 		case "a":
-			adminLogin();
+			adminLogin2();
 		default:
 			break;
 		}
@@ -118,6 +118,7 @@ public class AllMenus {
 	}
 
 
+
 //-------------------
 
 //CODE FOR EMPLOYEE TO GRAB CLIENT INFO
@@ -183,25 +184,23 @@ public class AllMenus {
 	
 	//------
 		// CODE FOR ADMIN LOGIN
-		public static void adminLogin() {
-
-			String userAdmin = "JIllJack";
-			String passAdmin = "downhill";
-			System.out.println("Welcome to Admin Portal");
-			System.out.println("Please Enter Username and Password");
-			System.out.println("Username:");
-			String adminUsername = scan.nextLine();
-			System.out.println("Password:");
-			String adminPassword = scan.nextLine();
+	
+	
+	public static void adminLogin2() {
+		String userAdmin = "JillJack";
+		String passAdmin = "downhill";
+		System.out.println("Welcome to Admin Portal");
+		System.out.println("Please Enter Username and Password");
+		System.out.println("Username:");
+		String adminUser = scan.nextLine();
+		System.out.println("Passoword:");
+		String adminPass= scan.nextLine();
+		if(userAdmin.equals(adminUser) && passAdmin.equals(adminPass)) {
+			System.out.println("Welcome " + userAdmin);
 			adminOptions();
-			if (userAdmin.equals(adminUsername) && passAdmin.equals(adminPassword)) {
-				System.out.println("Welcome " + userAdmin);
-				adminOptions();
-			}else {
-				System.out.println("Wrong Username/Password, Please try again");
-				adminLogin();
-			}
 		}
+		
+	}
 
 //------------------------------------
 		//ADMIN CODE FOR ADMIN PORTAL
